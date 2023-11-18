@@ -11,6 +11,7 @@
 - `SQL`
     - It is the Query Language for Relational Data Bases.
 
+
 # Concepts in SQL Data Base
 ****
 - #### ACID PROPERTIES
