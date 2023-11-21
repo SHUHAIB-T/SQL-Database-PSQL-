@@ -50,3 +50,9 @@ CREATE TABLE cars;
 INSERT INTO cars(brand VARCHAR(255), year INT , color VARCHAR(255) )
 VALUES ('volvo',2013,'red');
 ```
+
+### stored procedures
+
+it is like user defined functions in sql. we create a procedure and compile it, whenever we want to use that we can use 'call procedure_name'.
+- this will make our application faster because we can save the compailation time.
+- code reusablity
