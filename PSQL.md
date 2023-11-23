@@ -111,4 +111,6 @@ SELECT * FROM products;
 
  COMMIT;
 ```
+### Triggers
 
+it is like a user defined function that triggers automatically when an enveny is happened. event can be anything like CREATE, DELETE, UPDATE etc. 
