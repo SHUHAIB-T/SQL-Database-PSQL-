@@ -171,3 +171,6 @@ CREATE INDEX idx_geom ON geospatial_data USING GIST (geom);
 -- Creating an SP-GiST index on the 'point' column in the 'locations' table
 CREATE INDEX idx_point ON locations USING SPGIST (point);
 ``````
+
+### clustered index and non-clustured inedex
+indexes are tables or views that shows the 
