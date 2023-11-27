@@ -122,6 +122,30 @@ SELECT * FROM products;
 
 it is like a user defined function that triggers automatically when an enveny is happened. event can be anything like CREATE, DELETE, UPDATE etc.
 
+example for trigger;
+
+```
+create or replace function afterdelet
+returns trigger as $$
+begin
+insert into backup(brand, model, year, color)
+values(
+  old.brand,
+  old.model,
+  old.year,
+  old.color
+);
+return old;
+end;
+$$ language plpgsql;
+
+
+create or replace trigger aftercardelete()
+after delete on cars
+for each row
+execute function afterdelete();
+```
+
 ### Locks
 
 in DBMS locks are the mechanism that is used to controll access to shared resources.
@@ -148,29 +172,36 @@ CREATE INDEX idx_product_name ON products(product_name);
 ```
 
 - `Hash Index: ` Suitable for equality queries (e.g., WHERE column = 'value').
-Example:
+  Example:
+
 ```
 -- Creating a Hash index on the 'employee_id' column in the 'employees' table
 CREATE INDEX idx_employee_id ON employees USING HASH (employee_id);
 ```
+
 - `GIN (Generalized Inverted Index): ` sutable for tables containing array or composite data types
-Eg: 
-``````
+  Eg:
+
+```
 -- Creating a GIN index on the 'tags' column (array type) in the 'articles' table
 CREATE INDEX idx_tags ON articles USING GIN (tags);
-``````
+```
 
--  `GiST(Generalized Search Tree):` Sutable for geometric or full text search Queries.
-Eg:
-``````
+- `GiST(Generalized Search Tree):` Sutable for geometric or full text search Queries.
+  Eg:
+
+```
 -- Creating a GiST index on the 'geom' column (geometry type) in the 'geospatial_data' table
 CREATE INDEX idx_geom ON geospatial_data USING GIST (geom);
-`````` 
+```
+
 - `SP-GiST(space Partitioned Generalized Search Tree): ` sutable for sapce partintioned data structures.
-``````
+
+```
 -- Creating an SP-GiST index on the 'point' column in the 'locations' table
 CREATE INDEX idx_point ON locations USING SPGIST (point);
-``````
+```
 
 ### clustered index and non-clustured inedex
-indexes are tables or views that shows the 
+
+indexes are tables or views that shows the
